@@ -7,8 +7,6 @@ import {
   DialogPanel,
   Menu,
   MenuButton,
-  MenuItem,
-  MenuItems,
   TransitionChild,
 } from '@headlessui/react';
 import {
@@ -24,7 +22,9 @@ import {
   IconX,
   IconChevronDown,
 } from '@tabler/icons-react';
-import Dashboard from './Dashboard';
+import RequestAdvanceButton from './RequestAdvanceButton';
+import BalanceDisplay from './BalanceDisplay';
+import TransactionsList from './TransactionsList';
 
 const navigation = [
   { name: 'Dashboard', href: '#', icon: IconLayoutDashboard, current: true },
@@ -43,7 +43,7 @@ function classNames(...classes: (string | undefined | null | false)[]): string {
   return classes.filter(Boolean).join(' ');
 }
 
-export default function Sidebar() {
+export default function Layout() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
@@ -58,7 +58,6 @@ export default function Sidebar() {
             transition
             className="fixed inset-0 bg-slate-900/80 transition-opacity duration-300 ease-linear data-[closed]:opacity-0"
           />
-
           <div className="fixed inset-0 flex">
             <DialogPanel
               transition
@@ -76,7 +75,7 @@ export default function Sidebar() {
                   </button>
                 </div>
               </TransitionChild>
-              <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-white px-6 pb-4">
+              <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-slate-700 px-6 pb-4">
                 <div className="flex h-16 shrink-0 items-center">
                   <img
                     alt="Bree Logo"
@@ -90,7 +89,7 @@ export default function Sidebar() {
                   />
                 </div>
                 <nav className="flex flex-1 flex-col">
-                  <ul className="flex flex-1 flex-col gap-y-7">
+                  <ul className="flex flex-1 flex-col gap-y-7 ml-[0.85rem]">
                     <li>
                       <ul className="-mx-2 space-y-1">
                         {navigation.map((item) => (
@@ -99,9 +98,9 @@ export default function Sidebar() {
                               href={item.href}
                               className={classNames(
                                 item.current
-                                  ? 'bg-slate-50 text-blue-600'
-                                  : 'text-slate-700 hover:bg-slate-50 hover:text-blue-600',
-                                'group flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold',
+                                  ? 'text-blue-600'
+                                  : 'text-slate-100',
+                                'group flex items-center gap-x-3 rounded-md p-2 text-sm font-semibold text-[1.1rem]',
                               )}
                             >
                               <item.icon
@@ -109,11 +108,13 @@ export default function Sidebar() {
                                 className={classNames(
                                   item.current
                                     ? 'text-blue-600'
-                                    : 'text-slate-400 group-hover:text-blue-600',
+                                    : 'text-slate-400',
                                   'h-6 w-6 shrink-0',
                                 )}
                               />
-                              {item.name}
+                              <span className="transform transition-transform duration-200 group-hover:translate-x-1 font-afacadFlux text-[1.1rem]">
+                                {item.name}
+                              </span>
                             </a>
                           </li>
                         ))}
@@ -122,13 +123,15 @@ export default function Sidebar() {
                     <li className="mt-auto">
                       <a
                         href="/"
-                        className="group -mx-2 flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold text-slate-700 hover:bg-slate-50 hover:text-blue-600"
+                        className="group -mx-2 flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold text-slate-100 font-afacadFlux"
                       >
                         <IconSettings
                           aria-hidden="true"
-                          className="h-6 w-6 shrink-0 text-slate-400 group-hover:text-blue-600"
+                          className="h-6 w-6 shrink-0 text-slate-400"
                         />
-                        Settings
+                        <span className="transform transition-transform duration-200 group-hover:translate-x-1 font-afacadFlux text-[1.1rem]">
+                          Settings
+                        </span>
                       </a>
                     </li>
                   </ul>
@@ -153,7 +156,7 @@ export default function Sidebar() {
               />
             </div>
             <nav className="flex flex-1 flex-col">
-              <ul className="flex flex-1 flex-col gap-y-7">
+              <ul className="flex flex-1 flex-col gap-y-7 ml-[0.9rem]">
                 <li>
                   <ul className="-mx-2 space-y-1">
                     {navigation.map((item) => (
@@ -161,22 +164,20 @@ export default function Sidebar() {
                         <a
                           href={item.href}
                           className={classNames(
-                            item.current
-                              ? 'bg-gradient-to-r from-slate-100 text-blue-600'
-                              : 'text-slate-100 hover:bg-gradient-to-r from-slate-100 hover:text-blue-600',
-                            'group flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold',
+                            item.current ? 'text-blue-600' : 'text-slate-100',
+                            'group flex items-center gap-x-3 rounded-md p-2 text-[1.1rem] font-medium font-afacadFlux',
                           )}
                         >
                           <item.icon
                             aria-hidden="true"
                             className={classNames(
-                              item.current
-                                ? 'text-blue-600'
-                                : 'text-slate-400 group-hover:text-blue-600',
+                              item.current ? 'text-blue-600' : 'text-slate-400',
                               'h-6 w-6 shrink-0',
                             )}
                           />
-                          {item.name}
+                          <span className="transform transition-transform duration-200 group-hover:translate-x-1">
+                            {item.name}
+                          </span>
                         </a>
                       </li>
                     ))}
@@ -186,13 +187,15 @@ export default function Sidebar() {
                 <li className="mt-auto">
                   <a
                     href="/"
-                    className="group -mx-2 flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold text-slate-700 hover:bg-slate-50 hover:text-blue-600"
+                    className="group -mx-2 flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold text-slate-700"
                   >
                     <IconSettings
                       aria-hidden="true"
-                      className="h-6 w-6 shrink-0 text-slate-400 group-hover:text-blue-600"
+                      className="h-6 w-6 shrink-0 text-slate-400"
                     />
-                    Settings
+                    <span className="transform transition-transform duration-200 group-hover:translate-x-1 text-[1.1rem] font-afacadFlux text-slate-100">
+                      Settings
+                    </span>
                   </a>
                 </li>
               </ul>
@@ -236,7 +239,7 @@ export default function Sidebar() {
                   <span className="hidden lg:flex lg:items-center">
                     <span
                       aria-hidden="true"
-                      className="ml-4 text-sm/6 font-semibold text-slate-900"
+                      className="ml-4 text-[1rem] font-semibold text-slate-100 font-afacadFlux"
                     >
                       Xavier Martin Demers
                     </span>
@@ -246,26 +249,22 @@ export default function Sidebar() {
                     />
                   </span>
                 </MenuButton>
-                <MenuItems
-                  transition
-                  className="absolute right-0 z-10 mt-2.5 w-32 origin-top-right rounded-md bg-white py-2 shadow-lg ring-1 ring-slate-900/5 transition focus:outline-none data-[closed]:scale-95 data-[closed]:transform data-[closed]:opacity-0 data-[enter]:duration-100 data-[leave]:duration-75 data-[enter]:ease-out data-[leave]:ease-in"
-                >
-                  {userNavigation.map((item) => (
-                    <MenuItem key={item.name}>
-                      <a
-                        href={item.href}
-                        className="block px-3 py-1 text-sm/6 text-slate-900 data-[focus]:bg-slate-50"
-                      >
-                        {item.name}
-                      </a>
-                    </MenuItem>
-                  ))}
-                </MenuItems>
               </Menu>
             </div>
           </div>
-
-          <main>{<Dashboard />}</main>
+          <main className="min-h-screen bg-slate-700">
+            <div className="p-4 flex flex-col bg-slate-700">
+              <div className="mb-4 grid grid-cols-2 grid-rows-1 gap-4">
+                <div className="flex justify-center items-center col-span-1 bg-slate-800 rounded-md text-center">
+                  <BalanceDisplay />
+                </div>
+                <div className="flex justify-center col-span-1 items-center bg-slate-800 rounded-md text-center">
+                  <RequestAdvanceButton />
+                </div>
+              </div>
+              <TransactionsList />
+            </div>
+          </main>
         </div>
       </div>
     </>
