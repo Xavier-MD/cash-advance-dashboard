@@ -1,46 +1,44 @@
-# Getting Started with Create React App
+# Xavier's Bree Dashboard Submission
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## How to Run the Project
 
-## Available Scripts
+To set up and run the project locally, follow these steps:
 
-In the project directory, you can run:
+### 1. Clone the Repository: 
+`git clone https://github.com/Xavier-MD/cash-advance-dashboard.git`
+`cd your-project`
 
-### `npm start`
+### 2. Install Dependencies:
+Ensure you have Node.js installed. Then, install the required packages:
+`npm install`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### 3. Start the Development Server:
+`npm run dev`
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### 4. Open the Application:
+Navigate to http://localhost:3000 in your web browser to view the application.
 
-### `npm test`
+## Design Choices
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+In developing this project, I focused on creating visuals that seamlessly align with the company's existing logo. Colors, fonts, and other design elements were carefully chosen to create a cohesive user experience.
 
-### `npm run build`
+### Color Palette
+The color scheme was derived directly from the logo to maintain brand consistency. By using these specific colors throughout the application, the interface feels integrated and reinforces the company's identity.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Typography
+Fonts can dramatically influence the feel of a project. In this case, I selected fonts that capture the playfulness requested while keeping the layout simple. This combination aims to balance an engaging user experience with a professional appearance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Layout Simplicity
+Simplicity was a key consideration in the layout design. A straightforward and intuitive interface allows users to navigate effortlessly, enhancing usability. The business-oriented color scheme adds a layer of professionalism, complementing the playful fonts.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Challenges Faced and Solutions
 
-### `npm run eject`
+Throughout the development process, I encountered several challenges that required innovative solutions:
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### Responsive Design Implementation
+Challenge: Ensuring the application maintains its visual appeal and functionality across various screen sizes and devices.
+Solution: A mobile-first approach was adopted, using flexible grid systems and appropriate sizings. This strategy ensured a seamless user experience on smartphones, tablets, and desktops.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+### State Management Complexity
+Challenge: Managing state across multiple components became complex and risked prop drilling issues.
+Solution: Leveraging React's Context API allowed for efficient global state management. This approach minimized unnecessary re-renders and simplified data flow within the application.
