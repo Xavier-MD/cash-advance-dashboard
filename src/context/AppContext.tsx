@@ -22,7 +22,7 @@ export const AppProvider = ({ children }: AppProviderProps) => {
       date: '2024-10-25',
       amount: 100,
       status: 'Completed',
-      repaymentDate: '2023-11-25',
+      repaymentDate: '2024-11-25',
     },
     {
       id: '2',
@@ -35,7 +35,7 @@ export const AppProvider = ({ children }: AppProviderProps) => {
       date: '2024-10-15',
       amount: 200,
       status: 'Completed',
-      repaymentDate: '2023-11-15',
+      repaymentDate: '2024-11-15',
     },
     {
       id: '4',
@@ -48,7 +48,7 @@ export const AppProvider = ({ children }: AppProviderProps) => {
       date: '2024-10-05',
       amount: 75,
       status: 'Completed',
-      repaymentDate: '2023-11-05',
+      repaymentDate: '2024-11-05',
     },
   ]);
 
