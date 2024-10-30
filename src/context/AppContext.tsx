@@ -1,12 +1,5 @@
 import React, { createContext, useState, ReactNode } from 'react';
-
-interface Transaction {
-  id: string;
-  date: string;
-  amount: number;
-  status: 'Pending' | 'Completed';
-  repaymentDate?: string;
-}
+import { Transaction } from '../types/Transaction';
 
 interface AppContextProps {
   balance: number;
@@ -21,10 +14,42 @@ interface AppProviderProps {
   children: ReactNode;
 }
 
-export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
+export const AppProvider = ({ children }: AppProviderProps) => {
   const [balance, setBalance] = useState<number>(350);
   const [transactions, setTransactions] = useState<Transaction[]>([
-    // Initial mock transactions
+    {
+      id: '1',
+      date: '2024-10-25',
+      amount: 100,
+      status: 'Completed',
+      repaymentDate: '2023-11-25',
+    },
+    {
+      id: '2',
+      date: '2024-10-20',
+      amount: 150,
+      status: 'Pending',
+    },
+    {
+      id: '3',
+      date: '2024-10-15',
+      amount: 200,
+      status: 'Completed',
+      repaymentDate: '2023-11-15',
+    },
+    {
+      id: '4',
+      date: '2024-10-10',
+      amount: 50,
+      status: 'Pending',
+    },
+    {
+      id: '5',
+      date: '2024-10-05',
+      amount: 75,
+      status: 'Completed',
+      repaymentDate: '2023-11-05',
+    },
   ]);
 
   return (
