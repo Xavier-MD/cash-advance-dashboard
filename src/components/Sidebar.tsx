@@ -12,34 +12,27 @@ import {
   TransitionChild,
 } from '@headlessui/react';
 import {
-  Bars3Icon,
-  BellIcon,
-  CalendarIcon,
-  ChartPieIcon,
-  Cog6ToothIcon,
-  DocumentDuplicateIcon,
-  FolderIcon,
-  HomeIcon,
-  UsersIcon,
-  XMarkIcon,
-} from '@heroicons/react/24/outline';
-import {
-  ChevronDownIcon,
-} from '@heroicons/react/20/solid';
+  IconLayoutDashboard,
+  IconUsers,
+  IconFolder,
+  IconCalendar,
+  IconFiles,
+  IconChartPie,
+  IconSettings,
+  IconBell,
+  IconMenu3,
+  IconX,
+  IconChevronDown,
+} from '@tabler/icons-react';
 import Dashboard from './Dashboard';
 
 const navigation = [
-  { name: 'Dashboard', href: '#', icon: HomeIcon, current: true },
-  { name: 'Team', href: '#', icon: UsersIcon, current: false },
-  { name: 'Projects', href: '#', icon: FolderIcon, current: false },
-  { name: 'Calendar', href: '#', icon: CalendarIcon, current: false },
-  { name: 'Documents', href: '#', icon: DocumentDuplicateIcon, current: false },
-  { name: 'Reports', href: '#', icon: ChartPieIcon, current: false },
-];
-const teams = [
-  { id: 1, name: 'Heroicons', href: '#', initial: 'H', current: false },
-  { id: 2, name: 'Tailwind Labs', href: '#', initial: 'T', current: false },
-  { id: 3, name: 'Workcation', href: '#', initial: 'W', current: false },
+  { name: 'Dashboard', href: '#', icon: IconLayoutDashboard, current: true },
+  { name: 'Team', href: '#', icon: IconUsers, current: false },
+  { name: 'Projects', href: '#', icon: IconFolder, current: false },
+  { name: 'Calendar', href: '#', icon: IconCalendar, current: false },
+  { name: 'Documents', href: '#', icon: IconFiles, current: false },
+  { name: 'Reports', href: '#', icon: IconChartPie, current: false },
 ];
 const userNavigation = [
   { name: 'Your profile', href: '#' },
@@ -79,10 +72,7 @@ export default function Sidebar() {
                     className="-m-2.5 p-2.5"
                   >
                     <span className="sr-only">Close sidebar</span>
-                    <XMarkIcon
-                      aria-hidden="true"
-                      className="h-6 w-6 text-white"
-                    />
+                    <IconX aria-hidden="true" className="h-6 w-6 text-white" />
                   </button>
                 </div>
               </TransitionChild>
@@ -130,44 +120,12 @@ export default function Sidebar() {
                         ))}
                       </ul>
                     </li>
-                    <li>
-                      <div className="text-xs/6 font-semibold text-slate-400">
-                        Your teams
-                      </div>
-                      <ul className="-mx-2 mt-2 space-y-1">
-                        {teams.map((team) => (
-                          <li key={team.name}>
-                            <a
-                              href={team.href}
-                              className={classNames(
-                                team.current
-                                  ? 'bg-slate-50 text-blue-600'
-                                  : 'text-slate-700 hover:bg-slate-50 hover:text-blue-600',
-                                'group flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold',
-                              )}
-                            >
-                              <span
-                                className={classNames(
-                                  team.current
-                                    ? 'border-blue-600 text-blue-600'
-                                    : 'border-slate-200 text-slate-400 group-hover:border-blue-600 group-hover:text-blue-600',
-                                  'flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border bg-white text-[0.625rem] font-medium',
-                                )}
-                              >
-                                {team.initial}
-                              </span>
-                              <span className="truncate">{team.name}</span>
-                            </a>
-                          </li>
-                        ))}
-                      </ul>
-                    </li>
                     <li className="mt-auto">
                       <a
                         href="/"
                         className="group -mx-2 flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold text-slate-700 hover:bg-slate-50 hover:text-blue-600"
                       >
-                        <Cog6ToothIcon
+                        <IconSettings
                           aria-hidden="true"
                           className="h-6 w-6 shrink-0 text-slate-400 group-hover:text-blue-600"
                         />
@@ -232,7 +190,7 @@ export default function Sidebar() {
                     href="/"
                     className="group -mx-2 flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold text-slate-700 hover:bg-slate-50 hover:text-blue-600"
                   >
-                    <Cog6ToothIcon
+                    <IconSettings
                       aria-hidden="true"
                       className="h-6 w-6 shrink-0 text-slate-400 group-hover:text-blue-600"
                     />
@@ -252,7 +210,7 @@ export default function Sidebar() {
                 className="-m-2.5 p-2.5 text-slate-700 lg:hidden"
               >
                 <span className="sr-only">Open sidebar</span>
-                <Bars3Icon aria-hidden="true" className="h-6 w-6" />
+                <IconMenu3 aria-hidden="true" className="h-6 w-6" />
               </button>
             </div>
             <div className="flex items-center gap-x-4 lg:gap-x-6">
@@ -261,8 +219,7 @@ export default function Sidebar() {
                 className="-m-2.5 p-2.5 text-slate-400 hover:text-slate-500"
               >
                 <span className="sr-only">View notifications</span>
-                <BellIcon aria-hidden="true" className="h-6 w-6" />
-                
+                <IconBell aria-hidden="true" className="h-6 w-6" />
               </button>
               {/* Separator */}
               <div
@@ -285,7 +242,7 @@ export default function Sidebar() {
                     >
                       Xavier Martin Demers
                     </span>
-                    <ChevronDownIcon
+                    <IconChevronDown
                       aria-hidden="true"
                       className="ml-2 h-5 w-5 text-slate-400"
                     />
@@ -310,9 +267,7 @@ export default function Sidebar() {
             </div>
           </div>
 
-          <main>
-            {<Dashboard />}
-          </main>
+          <main>{<Dashboard />}</main>
         </div>
       </div>
     </>
