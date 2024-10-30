@@ -1,5 +1,5 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 interface Transaction {
   id: string;
@@ -14,29 +14,42 @@ interface Props {
 }
 
 const TransactionItem: React.FC<Props> = ({ transaction }) => {
+  const [isHovered, setIsHovered] = useState(false);
+
   return (
     <motion.li
-      className="mb-2 p-4 bg-gray-800 rounded cursor-pointer"
-      whileHover={{ scale: 1.02 }}
+      className="mb-2 p-4 bg-slate-800 rounded cursor-pointer font-afacadFlux shadow-md"
+      onHoverStart={() => setIsHovered(true)}
+      onHoverEnd={() => setIsHovered(false)}
     >
       <div className="flex justify-between">
         <div>
-          <p className="text-lg">{transaction.date}</p>
-          <p className="text-sm text-gray-400">{transaction.status}</p>
+          <p className="text-lg text-slate-100">{transaction.date}</p>
+          <p className="text-sm text-slate-400">{transaction.status}</p>
         </div>
         <div>
-          <p className="text-lg font-semibold">
+          <p className="text-2xl font-semibold text-slate-100">
             ${transaction.amount.toFixed(2)}
           </p>
         </div>
       </div>
       {/* Additional Details */}
-      <div className="mt-2 text-sm text-gray-400">
-        <p>Transaction ID: {transaction.id}</p>
-        {transaction.repaymentDate && (
-          <p>Repayment Date: {transaction.repaymentDate}</p>
+      <AnimatePresence>
+        {isHovered && (
+          <motion.div
+            className="mt-2 text-sm text-slate-400"
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.2 }}
+          >
+            <p>Transaction ID: {transaction.id}</p>
+            {transaction.repaymentDate && (
+              <p>Repayment Date: {transaction.repaymentDate}</p>
+            )}
+          </motion.div>
         )}
-      </div>
+      </AnimatePresence>
     </motion.li>
   );
 };
