@@ -13,33 +13,50 @@ const RequestAdvanceModal: React.FC<Props> = ({ onClose }) => {
 
   const { balance, setBalance, transactions, setTransactions } = appContext;
 
-  const [amount, setAmount] = useState<number>(0);
+  const [amount, setAmount] = useState<string>('');
   const [error, setError] = useState<string>('');
   const [isSubmitted, setIsSubmitted] = useState<boolean>(false);
+  const [submittedAmount, setSubmittedAmount] = useState<number | null>(null);
 
   const maxAmount = balance;
+
+  const handleAmountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+
+    // Allow only numbers, one decimal point, and up to two decimal places
+    if (/^\d*\.?\d{0,2}$/.test(value)) {
+      setAmount(value);
+    }
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
 
-    if (amount <= 0) {
+    const numericAmount = parseFloat(amount);
+
+    if (isNaN(numericAmount)) {
       setError('Please enter a valid amount.');
       return;
     }
-    if (amount > maxAmount) {
+
+    if (numericAmount <= 0) {
+      setError('Please enter a valid amount.');
+      return;
+    }
+    if (numericAmount > maxAmount) {
       setError(`Maximum allowed amount is $${maxAmount.toFixed(2)}.`);
       return;
     }
 
     // Update balance
-    setBalance((prevBalance) => prevBalance - amount);
+    setBalance((prevBalance) => prevBalance - numericAmount);
 
     // Add new transaction
     const newTransaction: Transaction = {
       id: uuidv4(),
       date: new Date().toISOString().split('T')[0],
-      amount: amount,
+      amount: numericAmount,
       status: 'Pending',
     };
 
@@ -49,6 +66,8 @@ const RequestAdvanceModal: React.FC<Props> = ({ onClose }) => {
     ]);
 
     setIsSubmitted(true);
+    setSubmittedAmount(numericAmount); // Store the submitted amount
+    setAmount(''); // Reset the input field
   };
 
   return (
@@ -67,15 +86,20 @@ const RequestAdvanceModal: React.FC<Props> = ({ onClose }) => {
               <label htmlFor="amount" className="block mb-2">
                 Amount ($):
               </label>
-              <input
-                id="amount"
-                type="number"
-                className="w-full p-2 rounded bg-gray-700 text-white"
-                value={amount}
-                onChange={(e) => setAmount(Number(e.target.value))}
-                max={maxAmount}
-                min={0}
-              />
+              <div className="relative">
+                <span className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-white">
+                  $
+                </span>
+                <input
+                  id="amount"
+                  type="text"
+                  inputMode="decimal"
+                  className="w-full p-2 pl-7 rounded bg-gray-700 text-white"
+                  value={amount}
+                  onChange={handleAmountChange}
+                  placeholder="0.00"
+                />
+              </div>
               {error && <p className="text-red-500 mt-2">{error}</p>}
             </div>
             <div className="flex justify-end">
@@ -98,8 +122,8 @@ const RequestAdvanceModal: React.FC<Props> = ({ onClose }) => {
           <div>
             <h2 className="text-xl font-semibold mb-4">Success!</h2>
             <p>
-              You have requested ${amount.toFixed(2)}. It will be processed
-              shortly.
+              You have requested ${submittedAmount?.toFixed(2)}. It will be
+              processed shortly.
             </p>
             <div className="flex justify-end mt-4">
               <button
