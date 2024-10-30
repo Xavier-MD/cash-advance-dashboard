@@ -15,14 +15,16 @@ const TransactionsList: React.FC = () => {
 
   return (
     <div>
-      <h2 className="text-2xl font-semibold mb-2">Recent Transactions</h2>
+      <h2 className="text-2xl font-medium mb-4 text-slate-100 font-afacadFlux ">
+        Recent Transactions
+      </h2>
       {/* Filter Buttons */}
       <div className="mb-4">
         {['All', 'Pending', 'Completed'].map((status) => (
           <button
             key={status}
-            className={`mr-2 px-4 py-2 rounded ${
-              filter === status ? 'bg-blue-600' : 'bg-gray-700'
+            className={`mr-2 px-4 py-2 rounded text-slate-100 font-afacadFlux text-[1rem] shadow-md ${
+              filter === status ? 'bg-blue-600' : 'bg-slate-800'
             }`}
             onClick={() => setFilter(status as 'All' | 'Pending' | 'Completed')}
           >

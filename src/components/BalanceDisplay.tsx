@@ -9,11 +9,13 @@ const BalanceDisplay: React.FC = () => {
   const { balance } = appContext;
 
   return (
-    <div className="mb-4">
-      <h2 className="text-2xl font-semibold">Available Balance</h2>
-      <p className="text-4xl font-bold mt-2">${balance.toFixed(2)}</p>
+    <div className="py-[2rem]">
+      <p className="text-3xl font-semibold font-afacadFlux px-[1.2rem] text-slate-100">
+        Balance: ${balance.toFixed(2)}
+      </p>
     </div>
   );
 };
 
 export default BalanceDisplay;
+

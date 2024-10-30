@@ -73,18 +73,21 @@ const RequestAdvanceModal: React.FC<Props> = ({ onClose }) => {
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
       <motion.div
-        className="bg-gray-800 p-6 rounded shadow-lg w-11/12 max-w-md"
+        className="bg-slate-800 p-6 rounded shadow-lg w-11/12 max-w-md"
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}
       >
         {!isSubmitted ? (
           <form onSubmit={handleSubmit}>
-            <h2 className="text-xl font-semibold mb-4">
+            <h2 className="text-2xl font-semibold mb-4 font-afacadFlux text-slate-100">
               Request a Cash Advance
             </h2>
             <div className="mb-4">
-              <label htmlFor="amount" className="block mb-2">
-                Amount ($):
+              <label
+                htmlFor="amount"
+                className="block mb-2 font-afacadFlux text-slate-100"
+              >
+                Amount:
               </label>
               <div className="relative">
                 <span className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-white">
@@ -94,7 +97,7 @@ const RequestAdvanceModal: React.FC<Props> = ({ onClose }) => {
                   id="amount"
                   type="text"
                   inputMode="decimal"
-                  className="w-full p-2 pl-7 rounded bg-gray-700 text-white"
+                  className="w-full p-2 pl-7 rounded bg-slate-700 text-white"
                   value={amount}
                   onChange={handleAmountChange}
                   placeholder="0.00"
@@ -102,17 +105,17 @@ const RequestAdvanceModal: React.FC<Props> = ({ onClose }) => {
               </div>
               {error && <p className="text-red-500 mt-2">{error}</p>}
             </div>
-            <div className="flex justify-end">
+            <div className="flex justify-between">
               <button
                 type="button"
-                className="mr-2 px-4 py-2 bg-gray-600 rounded hover:bg-gray-700"
+                className="mr-2 px-4 py-2 bg-slate-600 rounded hover:bg-slate-700 font-afacadFlux text-slate-100"
                 onClick={onClose}
               >
                 Cancel
               </button>
               <button
                 type="submit"
-                className="px-4 py-2 bg-blue-600 rounded hover:bg-blue-700"
+                className="px-4 py-2 bg-blue-600 rounded hover:bg-blue-700 font-afacadFlux text-slate-100"
               >
                 Submit
               </button>
@@ -120,14 +123,16 @@ const RequestAdvanceModal: React.FC<Props> = ({ onClose }) => {
           </form>
         ) : (
           <div>
-            <h2 className="text-xl font-semibold mb-4">Success!</h2>
-            <p>
+            <h2 className="text-2xl font-semibold mb-4 font-afacadFlux text-slate-100">
+              Success!
+            </h2>
+            <p className="font-afacadFlux text-slate-100">
               You have requested ${submittedAmount?.toFixed(2)}. It will be
               processed shortly.
             </p>
             <div className="flex justify-end mt-4">
               <button
-                className="px-4 py-2 bg-blue-600 rounded hover:bg-blue-700"
+                className="px-4 py-2 bg-blue-600 rounded hover:bg-blue-700 font-afacadFlux text-slate-100"
                 onClick={onClose}
               >
                 Close

@@ -6,19 +6,19 @@ const RequestAdvanceButton: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = React.useState<boolean>(false);
 
   return (
-    <div className="mb-4">
+    <>
       <motion.button
-        whileHover={{ scale: 1.05 }}
+        whileHover={{ scale: 1.03 }}
         whileTap={{ scale: 0.95 }}
-        className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded"
+        className="w-full h-full bg-blue-600 hover:bg-blue-700 text-slate-100 font-afacadFlux font-semibold rounded text-3xl text-center px-[1rem]"
         onClick={() => setIsModalOpen(true)}
       >
-        Request a Cash Advance
+        <span className=''>Request a Cash Advance</span>
       </motion.button>
       {isModalOpen && (
         <RequestAdvanceModal onClose={() => setIsModalOpen(false)} />
       )}
-    </div>
+    </>
   );
 };
 
