@@ -203,7 +203,7 @@ export default function Layout() {
           </div>
         </div>
         <div className="lg:pl-72">
-          <div className="sticky top-0 z-40 flex h-16 shrink-0 justify-between items-center gap-x-4 border-b border-slate-600 bg-slate-800 px-4 shadow-sm sm:gap-x-6 sm:px-6 lg:px-8">
+          <div className="sticky top-0 z-40 flex h-16 shrink-0 justify-between items-center gap-x-4 border-b border-slate-600 bg-slate-800 px-4 shadow-md sm:gap-x-6 sm:px-6 lg:px-8">
             <div>
               <button
                 type="button"
@@ -255,10 +255,10 @@ export default function Layout() {
           <main className="min-h-screen bg-slate-700">
             <div className="p-4 flex flex-col bg-slate-700">
               <div className="mb-4 grid grid-cols-2 grid-rows-1 gap-4">
-                <div className="flex justify-center items-center col-span-1 bg-slate-800 rounded-md text-center">
+                <div className="flex justify-center items-center col-span-1 bg-slate-800 rounded-md text-center shadow-md">
                   <BalanceDisplay />
                 </div>
-                <div className="flex justify-center col-span-1 items-center bg-slate-800 rounded-md text-center">
+                <div className="flex justify-center col-span-1 items-center bg-slate-800 rounded-md text-center shadow-md">
                   <RequestAdvanceButton />
                 </div>
               </div>
